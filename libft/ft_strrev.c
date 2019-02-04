@@ -6,7 +6,7 @@
 /*   By: yserkez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 14:55:47 by yserkez           #+#    #+#             */
-/*   Updated: 2018/11/19 15:12:26 by yserkez          ###   ########.fr       */
+/*   Updated: 2019/01/22 16:31:43 by yserkez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 char	*ft_strrev(char *s, int len)
 {
-	char 	*ret;
-	int 	j;
+	char	*ret;
+	int		j;
 
 	j = 0;
 	ret = ft_strnew(len);
-	while ( --len >= 0)
+	while (--len >= 0)
 		ret[j++] = s[len];
 	return (ret);
 }

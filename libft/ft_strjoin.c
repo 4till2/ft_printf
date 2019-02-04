@@ -6,7 +6,7 @@
 /*   By: ccodiga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 16:24:28 by ccodiga           #+#    #+#             */
-/*   Updated: 2018/12/27 17:23:34 by yserkez          ###   ########.fr       */
+/*   Updated: 2019/01/25 11:10:02 by yserkez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strjoin(char **s1, char const *s2)
 		i++;
 	}
 	str[i] = '\0';
-	if ((*s1)[0])
+	if ((*s1))
 		ft_memdel((void**)s1);
 	return (str);
 }

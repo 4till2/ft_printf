@@ -6,13 +6,13 @@
 /*   By: yserkez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 16:39:30 by yserkez           #+#    #+#             */
-/*   Updated: 2018/12/27 17:20:06 by yserkez          ###   ########.fr       */
+/*   Updated: 2019/01/25 14:32:09 by yserkez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		is_int(double n)
+int		is_int(double long n)
 {
 	long long	trunc;
 
@@ -34,7 +34,7 @@ void	ft_round(char **num, int next, int pos)
 	}
 }
 
-void	convert_dec(char **ret, double fpart, int precision)
+void	convert_dec(char **ret, double long fpart, int precision)
 {
 	char	*tmp;
 	int		i;
@@ -59,18 +59,18 @@ void	convert_dec(char **ret, double fpart, int precision)
 	}
 }
 
-char	*ft_ftoa(double n, int precision)
+char	*ft_ftoa(double long n, int precision)
 {
 	char		*ret;
-	long long	i;
-	double		fpart;
+	double long	i;
+	double long	fpart;
 
 	precision == -1 ? (precision = 6) : 0;
-	i = (long long)n;
-	fpart = n - (double)i;
+	i = n;
+	fpart = n;
 	if (precision == 0)
 		((((int)(fpart * 10) % 10)) > 4) ? ++i : 0;
-	ret = ft_itoa_base(i, 10);
+	ret = ft_itoa_base((long long)i, 10);
 	convert_dec(&ret, fpart, precision);
 	return (ret);
 }

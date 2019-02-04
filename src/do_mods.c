@@ -6,7 +6,7 @@
 /*   By: yserkez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 16:30:04 by yserkez           #+#    #+#             */
-/*   Updated: 2018/12/27 16:33:00 by yserkez          ###   ########.fr       */
+/*   Updated: 2019/01/25 14:26:47 by yserkez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ void	shift_sign(char **ret, char **add)
 	}
 }
 
-void	mod_width(char **ret)
+void	mod_width(char **ret, int len)
 {
 	char	*add;
-	int		len;
 	char	fill;
 
 	add = NULL;
-	if ((len = g_width - ft_strlen(*ret)) < 1)
+	len = g_width - len;
+	if (hash_check(g_conv_table, 'c') && !(*ret[0]))
+		--len;
+	if (len < 1)
 		return ;
 	if (hash_check(g_flag_table, '0') && !hash_check(g_flag_table, '-') &&
-		g_precision == -1)
+			(hash_check(g_conv_table, 'c') || g_precision == -1))
 		fill = '0';
 	else
 		fill = ' ';
@@ -63,13 +65,13 @@ void	mod_prec(char **ret)
 	else if (hash_check(g_conv_table, 'o') || hash_check(g_conv_table, 'd') ||
 		hash_check(g_conv_table, 'i') || hash_check(g_conv_table, 'u'))
 	{
-		if (**ret == '-')
+		if (**ret == '-' && (g_precision >= (int)ft_strlen(*ret)))
 		{
 			g_precision++;
 			tmp = ft_chartostr('0', g_precision - ft_strlen(*ret));
 			shift_sign(ret, &tmp);
 		}
-		else
+		else if (g_precision >= (int)ft_strlen(*ret))
 			tmp = ft_chartostr('0', g_precision - ft_strlen(*ret));
 		*ret = ft_strjoinr(tmp, ret);
 	}
@@ -81,12 +83,13 @@ void	mod_prec(char **ret)
 
 void	mod_hash(char **ret)
 {
-	if (hash_check(g_conv_table, 'o'))
+	if (ft_strcmp(*ret, "0") == 0 && !hash_check(g_conv_table, 'p'))
+		;
+	else if (hash_check(g_conv_table, 'o'))
 		*ret = ft_strjoinr("0", ret);
-	if ((hash_check(g_conv_table, 'x') && ft_strcmp(*ret, "0") != 0) ||
-		hash_check(g_conv_table, 'p'))
+	else if (hash_check(g_conv_table, 'x') || hash_check(g_conv_table, 'p'))
 		*ret = ft_strjoinr("0x", ret);
-	if (hash_check(g_conv_table, 'X') && ft_strcmp(*ret, "0") != 0)
+	else if (hash_check(g_conv_table, 'X'))
 		*ret = ft_strjoinr("0X", ret);
 }
 
@@ -101,10 +104,9 @@ void	do_mods(char **ret)
 			hash_check(g_flag_table, '+') ? (*ret = ft_strjoinr("+", ret)) :
 			(*ret = ft_strjoinr(" ", ret));
 	}
-	else if ((hash_check(g_conv_table, 'p') || ((hash_check(g_conv_table, 'x')
+	else if (hash_check(g_conv_table, 'p') || ((((hash_check(g_conv_table, 'x')
 			|| hash_check(g_conv_table, 'X')) && g_precision != 0)
-		|| hash_check(g_conv_table, 'o')) && hash_check(g_flag_table, '#'))
+		|| hash_check(g_conv_table, 'o')) && hash_check(g_flag_table, '#')))
 		mod_hash(ret);
-	if (g_width > (int)ft_strlen(*ret))
-		mod_width(ret);
+	mod_width(ret, (int)ft_strlen(*ret));
 }

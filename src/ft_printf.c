@@ -6,7 +6,7 @@
 /*   By: yserkez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 16:19:55 by yserkez           #+#    #+#             */
-/*   Updated: 2018/12/25 16:20:42 by yserkez          ###   ########.fr       */
+/*   Updated: 2019/01/25 14:09:10 by yserkez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int		handle_flag(char *s, int *i, va_list args, char **ret)
 		else
 			g_message = s[*i];
 	}
+	if ((hash_check(g_conv_table, 'i') || hash_check(g_conv_table, 'd')) &&
+			hash_check(g_type_table, 'h'))
+		hash_update(g_flag_table, 'h');
 	return (append_arg(ret, args));
 }
 
@@ -59,7 +62,8 @@ int		ft_printf(char *s, ...)
 	int			i;
 	va_list		args;
 
-	ret = ft_memalloc(1);
+	ret = NULL;
+	ret = ft_strnew(1);
 	i = 0;
 	va_start(args, s);
 	while (s[i])

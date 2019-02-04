@@ -6,7 +6,7 @@
 /*   By: yserkez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 16:28:40 by yserkez           #+#    #+#             */
-/*   Updated: 2018/12/27 16:29:37 by yserkez          ###   ########.fr       */
+/*   Updated: 2019/01/25 11:54:56 by yserkez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,16 @@ void	hash_init(void)
 	hash_insert(g_conv_table, 'u', 0);
 	hash_insert(g_conv_table, 'x', 0);
 	hash_insert(g_conv_table, 'X', 0);
+	hash_insert(g_conv_table, 'O', 0);
+	hash_insert(g_conv_table, 'C', 0);
+	hash_insert(g_conv_table, 'S', 0);
 	hash_insert(g_type_table, 'h', 0);
 	hash_insert(g_type_table, 'z', 0);
 	hash_insert(g_type_table, 'j', 0);
 	hash_insert(g_type_table, 'l', 0);
 	hash_insert(g_flag_table, 'h', 0);
 	hash_insert(g_flag_table, 'l', 0);
+	hash_insert(g_flag_table, 'L', 0);
 	hash_insert(g_flag_table, '#', 0);
 	hash_insert(g_flag_table, '0', 0);
 	hash_insert(g_flag_table, '-', 0);

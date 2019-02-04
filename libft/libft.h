@@ -6,7 +6,7 @@
 /*   By: yserkez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 11:49:01 by yserkez           #+#    #+#             */
-/*   Updated: 2018/12/27 17:56:12 by yserkez          ###   ########.fr       */
+/*   Updated: 2019/01/22 16:32:18 by yserkez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-char    			*ft_ftoa(double n, int precision);
-double   			ft_pow(double x, int y);
-void       			ft_strncpyn(char **dst, char *src, size_t len);
+char				*ft_ftoa(double long n, int precision);
+double				ft_pow(double x, int y);
+void				ft_strncpyn(char **dst, char *src, size_t len);
 char				*ft_chartostr(char c, int len);
 void				ft_strtoupper(char **str);
 char				*ft_strappend(char **s1, char c);
